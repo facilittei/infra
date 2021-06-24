@@ -103,12 +103,13 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "api" {
-  count                  = length(var.azs)
-  ami                    = data.aws_ami.ubuntu.id
-  availability_zone      = element(var.azs, count.index)
-  instance_type          = var.instance_type
-  vpc_security_group_ids = ["${aws_security_group.api.id}", "${aws_security_group.lb.id}"]
-  subnet_id              = sort(data.aws_subnet_ids.public.ids)[count.index]
+  count                       = length(var.azs)
+  ami                         = data.aws_ami.ubuntu.id
+  availability_zone           = element(var.azs, count.index)
+  instance_type               = var.instance_type
+  vpc_security_group_ids      = ["${aws_security_group.api.id}", "${aws_security_group.lb.id}"]
+  subnet_id                   = sort(data.aws_subnet_ids.public.ids)[count.index]
+  associate_public_ip_address = true
 
   tags = {
     Name        = "api-${var.product}-${var.environment}-${count.index}"

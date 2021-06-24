@@ -32,3 +32,23 @@ output "lb_dns_name" {
   description = "The DNS name of the load balancer."
   value       = module.ec2.lb_dns_name
 }
+
+output "instances_public_ip_0" {
+  description = "The instances IP 0."
+  value       = module.ec2.instances_public_ip_0
+}
+
+output "instances_public_ip_1" {
+  description = "The instances IP 1."
+  value       = module.ec2.instances_public_ip_1
+}
+
+output "instances_public_dns_0" {
+  description = "The instances DNS 0."
+  value       = module.ec2.instances_public_dns_0
+}
+
+output "instances_public_dns_1" {
+  description = "The instances DNS 1."
+  value       = module.ec2.instances_public_dns_1
+}
