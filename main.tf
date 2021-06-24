@@ -1,19 +1,35 @@
 terraform {
   required_providers {
-    vultr = {
-      source  = "vultr/vultr"
-      version = "2.1.3"
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0"
     }
+  }
+  backend "s3" {
+    bucket = "facilittei-terraform-state"
+    key    = "facilittei.terraform.tfstate"
+    region = "us-east-1"
   }
 }
 
-provider "vultr" {}
+provider "aws" {
+  region = var.region
+}
 
-resource "vultr_instance" "api" {
-  plan     = "vc2-1c-1gb"
-  region   = var.region
-  os_id    = "387"
-  label    = "${var.environment}-api"
-  hostname = var.hostname
-  tag      = var.environment
+module "vpc" {
+  source         = "./modules/vpc"
+  environment    = var.environment
+  product        = var.product
+  region         = var.region
+  cidr           = var.cidr
+  azs            = var.azs
+  subnets_public = var.subnets_public
+}
+
+module "ec2" {
+  source        = "./modules/ec2"
+  environment   = var.environment
+  product       = var.product
+  azs           = var.azs
+  instance_type = var.instance_type
 }

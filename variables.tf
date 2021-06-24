@@ -3,12 +3,32 @@ variable "environment" {
   description = "The environment provisioned."
 }
 
-variable "region" {
-  type        = string
-  description = "The region where the resource will be provisioned."
+variable "product" {
+  description = "The product to be provisioned."
+  default     = "facilittei"
 }
 
-variable "hostname" {
-  type        = string
-  description = "The instance hostname to be provisioned."
+variable "region" {
+  description = "The instance region to be provisioned."
+  default     = "us-east-1"
+}
+
+variable "cidr" {
+  description = "The IPv4 CIDR block of the VPC."
+  default     = "10.0.0.0/16"
+}
+
+variable "azs" {
+  description = "The list of availability zones to be provisioned."
+  default     = ["us-east-1a", "us-east-1b"]
+}
+
+variable "subnets_public" {
+  description = "The VPC public subnets."
+  default     = ["10.0.32.0/20", "10.0.48.0/20"]
+}
+
+variable "instance_type" {
+  description = "The Amazon Machine Image instance type."
+  default     = "t2.micro"
 }
