@@ -38,3 +38,8 @@ variable "public_key" {
   description = "The EC2 instance public key."
   sensitive   = true
 }
+
+variable "certificate_domain_api" {
+  type        = string
+  description = "The domain of the certificate of the API."
+}

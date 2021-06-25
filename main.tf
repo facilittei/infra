@@ -27,10 +27,11 @@ module "vpc" {
 }
 
 module "ec2" {
-  source        = "./modules/ec2"
-  environment   = var.environment
-  product       = var.product
-  azs           = var.azs
-  instance_type = var.instance_type
-  public_key    = var.public_key
+  source                 = "./modules/ec2"
+  environment            = var.environment
+  product                = var.product
+  azs                    = var.azs
+  instance_type          = var.instance_type
+  public_key             = var.public_key
+  certificate_domain_api = var.certificate_domain_api
 }

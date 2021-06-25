@@ -34,3 +34,9 @@ data "aws_ami" "ubuntu" {
 
   owners = ["099720109477"]
 }
+
+data "aws_acm_certificate" "api" {
+  domain      = var.certificate_domain_api
+  types       = ["AMAZON_ISSUED"]
+  most_recent = true
+}
