@@ -32,4 +32,5 @@ module "ec2" {
   product       = var.product
   azs           = var.azs
   instance_type = var.instance_type
+  public_key    = var.public_key
 }

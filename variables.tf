@@ -32,3 +32,9 @@ variable "instance_type" {
   description = "The Amazon Machine Image instance type."
   default     = "t2.micro"
 }
+
+variable "public_key" {
+  type        = string
+  description = "The EC2 instance public key."
+  sensitive   = true
+}
