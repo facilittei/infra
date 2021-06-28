@@ -24,7 +24,7 @@ resource "aws_security_group" "lb" {
   }
 
   tags = {
-    Name        = "${var.product}-${var.environment}"
+    Name        = "lb-${var.product}-${var.environment}"
     Project     = var.product
     Owner       = "Terraform"
     Environment = var.environment
@@ -57,7 +57,7 @@ resource "aws_security_group" "api" {
   }
 
   tags = {
-    Name        = "${var.product}-${var.environment}"
+    Name        = "api-${var.product}-${var.environment}"
     Project     = var.product
     Owner       = "Terraform"
     Environment = var.environment

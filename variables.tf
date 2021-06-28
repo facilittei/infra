@@ -43,3 +43,25 @@ variable "certificate_domain_api" {
   type        = string
   description = "The domain of the certificate of the API."
 }
+
+variable "db_username" {
+  type        = string
+  description = "The database username."
+  sensitive   = true
+}
+
+variable "db_password" {
+  type        = string
+  description = "The database password."
+  sensitive   = true
+}
+
+variable "db_name" {
+  type        = string
+  description = "The name of the database to create when the DB instance is created."
+}
+
+variable "db_instance_type" {
+  description = "The instance type of the RDS instance."
+  default     = "db.t2.micro"
+}

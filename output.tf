@@ -52,3 +52,8 @@ output "instances_public_dns_1" {
   description = "The instances DNS 1."
   value       = module.ec2.instances_public_dns_1
 }
+
+output "db_endpoint" {
+  description = "The connection endpoint in address:port format."
+  value       = module.db.endpoint
+}

@@ -35,3 +35,13 @@ module "ec2" {
   public_key             = var.public_key
   certificate_domain_api = var.certificate_domain_api
 }
+
+module "db" {
+  source           = "./modules/db"
+  environment      = var.environment
+  product          = var.product
+  db_username      = var.db_username
+  db_password      = var.db_password
+  db_name          = var.db_name
+  db_instance_type = var.db_instance_type
+}
