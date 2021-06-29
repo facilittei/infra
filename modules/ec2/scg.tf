@@ -31,8 +31,8 @@ resource "aws_security_group" "lb" {
   }
 }
 
-resource "aws_security_group" "api" {
-  name   = "api-${var.product}-${var.environment}"
+resource "aws_security_group" "nat" {
+  name   = "nat-${var.product}-${var.environment}"
   vpc_id = data.aws_vpc.main.id
 
   ingress {
@@ -47,6 +47,47 @@ resource "aws_security_group" "api" {
     from_port   = 80
     to_port     = 80
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    protocol    = "tcp"
+    from_port   = 443
+    to_port     = 443
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name        = "nat-${var.product}-${var.environment}"
+    Project     = var.product
+    Owner       = "Terraform"
+    Environment = var.environment
+  }
+}
+
+resource "aws_security_group" "api" {
+  name   = "api-${var.product}-${var.environment}"
+  vpc_id = data.aws_vpc.main.id
+
+  ingress {
+    protocol    = "tcp"
+    from_port   = 22
+    to_port     = 22
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    protocol        = "tcp"
+    from_port       = 80
+    to_port         = 80
+    cidr_blocks     = ["0.0.0.0/0"]
+    security_groups = [aws_security_group.lb.id, aws_security_group.nat.id]
   }
 
   egress {

@@ -35,6 +35,7 @@ module "ec2" {
   instance_type          = var.instance_type
   public_key             = var.public_key
   certificate_domain_api = var.certificate_domain_api
+  nat_instance           = var.nat_instance
 }
 
 module "db" {
