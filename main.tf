@@ -35,7 +35,22 @@ module "ec2" {
   instance_type          = var.instance_type
   public_key             = var.public_key
   certificate_domain_api = var.certificate_domain_api
+}
+
+module "nat" {
+  source                 = "./modules/nat"
+  environment            = var.environment
+  product                = var.product
+  azs                    = var.azs
+  public_key             = var.public_key
+  certificate_domain_nat = var.certificate_domain_api
+  instance_type          = var.instance_type
   nat_instance           = var.nat_instance
+
+  depends_on = [
+    module.vpc,
+    module.ec2
+  ]
 }
 
 module "db" {

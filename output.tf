@@ -62,3 +62,13 @@ output "db_endpoint" {
   description = "The connection endpoint in address:port format."
   value       = module.db.endpoint
 }
+
+output "nat_public_dns" {
+  description = "The NAT instances public DNS."
+  value       = module.nat.public_dns
+}
+
+output "nat_public_ip" {
+  description = "The NAT instances IP."
+  value       = module.nat.public_ip
+}
