@@ -13,6 +13,11 @@ output "subnet_public_id" {
   value       = module.vpc.subnet_public_id
 }
 
+output "subnet_private_id" {
+  description = "The VPC private subnets IDs."
+  value       = module.vpc.subnet_private_id
+}
+
 output "sg_lb" {
   description = "The security group for the load balancer."
   value       = module.ec2.sg_lb

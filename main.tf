@@ -17,13 +17,14 @@ provider "aws" {
 }
 
 module "vpc" {
-  source         = "./modules/vpc"
-  environment    = var.environment
-  product        = var.product
-  region         = var.region
-  cidr           = var.cidr
-  azs            = var.azs
-  subnets_public = var.subnets_public
+  source          = "./modules/vpc"
+  environment     = var.environment
+  product         = var.product
+  region          = var.region
+  cidr            = var.cidr
+  azs             = var.azs
+  subnets_public  = var.subnets_public
+  subnets_private = var.subnets_private
 }
 
 module "ec2" {

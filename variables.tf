@@ -28,6 +28,11 @@ variable "subnets_public" {
   default     = ["10.0.32.0/20", "10.0.48.0/20"]
 }
 
+variable "subnets_private" {
+  description = "The VPC private subnets."
+  default     = ["10.0.0.0/20", "10.0.16.0/20"]
+}
+
 variable "instance_type" {
   description = "The Amazon Machine Image instance type."
   default     = "t2.micro"
@@ -64,4 +69,9 @@ variable "db_name" {
 variable "db_instance_type" {
   description = "The instance type of the RDS instance."
   default     = "db.t2.micro"
+}
+
+variable "nat_instance" {
+  description = "The network address translation."
+  default     = "ami-00a9d4a05375b2763"
 }
