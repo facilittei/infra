@@ -29,3 +29,11 @@ output "instances_public_dns_0" {
 output "instances_public_dns_1" {
   value = aws_instance.api.1.public_dns
 }
+
+output "nat_public_dns" {
+  value = aws_instance.nat.public_dns
+}
+
+output "nat_public_ip" {
+  value = aws_instance.nat.public_ip
+}

@@ -64,11 +64,11 @@ output "db_endpoint" {
 }
 
 output "nat_public_dns" {
-  description = "The NAT instances public DNS."
-  value       = module.nat.public_dns
+  description = "The NAT instance public DNS."
+  value       = module.ec2.nat_public_dns
 }
 
 output "nat_public_ip" {
-  description = "The NAT instances IP."
-  value       = module.nat.public_ip
+  description = "The NAT instance IP."
+  value       = module.ec2.nat_public_ip
 }

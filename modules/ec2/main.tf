@@ -52,3 +52,10 @@ data "aws_acm_certificate" "api" {
   types       = ["AMAZON_ISSUED"]
   most_recent = true
 }
+
+data "aws_route_table" "private" {
+  filter {
+    name   = "tag:Name"
+    values = ["private-${var.product}-${var.environment}"]
+  }
+}

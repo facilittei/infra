@@ -13,6 +13,11 @@ resource "aws_instance" "api" {
   associate_public_ip_address = false
   key_name                    = aws_key_pair.api.id
 
+  depends_on = [
+    aws_instance.nat,
+    aws_route.private
+  ]
+
   user_data = file("${path.module}/user_data.sh")
 
   tags = {
