@@ -9,9 +9,14 @@ resource "aws_instance" "api" {
   availability_zone           = element(var.azs, count.index)
   instance_type               = var.instance_type
   vpc_security_group_ids      = ["${aws_security_group.api.id}", "${aws_security_group.lb.id}"]
-  subnet_id                   = sort(data.aws_subnet_ids.public.ids)[count.index]
-  associate_public_ip_address = true
+  subnet_id                   = reverse(data.aws_subnet_ids.private.ids)[count.index]
+  associate_public_ip_address = false
   key_name                    = aws_key_pair.api.id
+
+  depends_on = [
+    aws_instance.nat,
+    aws_route.private
+  ]
 
   user_data = file("${path.module}/user_data.sh")
 

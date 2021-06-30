@@ -19,6 +19,18 @@ data "aws_subnet_ids" "public" {
   }
 }
 
+data "aws_subnet_ids" "private" {
+  vpc_id = data.aws_vpc.main.id
+
+  filter {
+    name = "tag:Name"
+    values = [
+      "private-${var.product}-${var.environment}-0",
+      "private-${var.product}-${var.environment}-1"
+    ]
+  }
+}
+
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -39,4 +51,11 @@ data "aws_acm_certificate" "api" {
   domain      = var.certificate_domain_api
   types       = ["AMAZON_ISSUED"]
   most_recent = true
+}
+
+data "aws_route_table" "private" {
+  filter {
+    name   = "tag:Name"
+    values = ["private-${var.product}-${var.environment}"]
+  }
 }

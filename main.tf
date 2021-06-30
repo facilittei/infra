@@ -17,13 +17,14 @@ provider "aws" {
 }
 
 module "vpc" {
-  source         = "./modules/vpc"
-  environment    = var.environment
-  product        = var.product
-  region         = var.region
-  cidr           = var.cidr
-  azs            = var.azs
-  subnets_public = var.subnets_public
+  source          = "./modules/vpc"
+  environment     = var.environment
+  product         = var.product
+  region          = var.region
+  cidr            = var.cidr
+  azs             = var.azs
+  subnets_public  = var.subnets_public
+  subnets_private = var.subnets_private
 }
 
 module "ec2" {
@@ -34,6 +35,11 @@ module "ec2" {
   instance_type          = var.instance_type
   public_key             = var.public_key
   certificate_domain_api = var.certificate_domain_api
+  nat_instance           = var.nat_instance
+
+  depends_on = [
+    module.vpc,
+  ]
 }
 
 module "db" {

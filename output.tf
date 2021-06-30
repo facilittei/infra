@@ -13,6 +13,11 @@ output "subnet_public_id" {
   value       = module.vpc.subnet_public_id
 }
 
+output "subnet_private_id" {
+  description = "The VPC private subnets IDs."
+  value       = module.vpc.subnet_private_id
+}
+
 output "sg_lb" {
   description = "The security group for the load balancer."
   value       = module.ec2.sg_lb
@@ -56,4 +61,14 @@ output "instances_public_dns_1" {
 output "db_endpoint" {
   description = "The connection endpoint in address:port format."
   value       = module.db.endpoint
+}
+
+output "nat_public_dns" {
+  description = "The NAT instance public DNS."
+  value       = module.ec2.nat_public_dns
+}
+
+output "nat_public_ip" {
+  description = "The NAT instance IP."
+  value       = module.ec2.nat_public_ip
 }
