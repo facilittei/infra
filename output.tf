@@ -82,3 +82,13 @@ output "bastion_public_ip" {
   description = "The bastion instance IP."
   value       = module.ec2.bastion_public_ip
 }
+
+output "image_nginx_url" {
+  description = "Nginx ECR container image registry URL."
+  value       = aws_ecr_repository.nginx.repository_url
+}
+
+output "image_php_fpm_url" {
+  description = "PHP FPM ECR container image registry URL."
+  value       = aws_ecr_repository.php-fpm.repository_url
+}
