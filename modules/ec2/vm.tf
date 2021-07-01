@@ -14,7 +14,6 @@ resource "aws_instance" "api" {
   key_name                    = aws_key_pair.api.id
 
   depends_on = [
-    aws_instance.nat,
     aws_route.private
   ]
 

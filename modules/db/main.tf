@@ -7,19 +7,19 @@ data "aws_vpc" "main" {
   }
 }
 
-data "aws_subnet_ids" "public" {
+data "aws_subnet_ids" "private" {
   vpc_id = data.aws_vpc.main.id
 
   filter {
     name = "tag:Name"
     values = [
-      "public-${var.product}-${var.environment}-0",
-      "public-${var.product}-${var.environment}-1"
+      "private-${var.product}-${var.environment}-0",
+      "private-${var.product}-${var.environment}-1"
     ]
   }
 }
 
-data "aws_security_groups" "public" {
+data "aws_security_groups" "private" {
   filter {
     name = "tag:Name"
     values = [

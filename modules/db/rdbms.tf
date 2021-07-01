@@ -1,9 +1,9 @@
 resource "aws_db_subnet_group" "main" {
-  name       = "${var.product}-${var.environment}"
-  subnet_ids = data.aws_subnet_ids.public.ids
+  name       = "db-${var.product}-${var.environment}"
+  subnet_ids = data.aws_subnet_ids.private.ids
 
   tags = {
-    Name        = "${var.product}-${var.environment}"
+    Name        = "db-${var.product}-${var.environment}"
     Project     = var.product
     Owner       = "Terraform"
     Environment = var.environment
@@ -24,7 +24,7 @@ resource "aws_db_instance" "main" {
   storage_encrypted    = false
   multi_az             = false
 
-  vpc_security_group_ids = data.aws_security_groups.public.ids
+  vpc_security_group_ids = data.aws_security_groups.private.ids
   db_subnet_group_name   = aws_db_subnet_group.main.id
 
   tags = {
