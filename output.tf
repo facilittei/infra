@@ -72,3 +72,13 @@ output "nat_public_ip" {
   description = "The NAT instance IP."
   value       = module.ec2.nat_public_ip
 }
+
+output "bastion_public_dns" {
+  description = "The bastion instance public DNS."
+  value       = module.ec2.bastion_public_dns
+}
+
+output "bastion_public_ip" {
+  description = "The bastion instance IP."
+  value       = module.ec2.bastion_public_ip
+}

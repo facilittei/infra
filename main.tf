@@ -36,6 +36,7 @@ module "ec2" {
   public_key             = var.public_key
   certificate_domain_api = var.certificate_domain_api
   nat_instance           = var.nat_instance
+  work_allowed_ips       = var.work_allowed_ips
 
   depends_on = [
     module.vpc,

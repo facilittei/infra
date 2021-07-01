@@ -76,17 +76,16 @@ resource "aws_security_group" "api" {
   vpc_id = data.aws_vpc.main.id
 
   ingress {
-    protocol    = "tcp"
-    from_port   = 22
-    to_port     = 22
-    cidr_blocks = ["0.0.0.0/0"]
+    protocol        = "tcp"
+    from_port       = 22
+    to_port         = 22
+    security_groups = [aws_security_group.bastion.id]
   }
 
   ingress {
     protocol        = "tcp"
     from_port       = 80
     to_port         = 80
-    cidr_blocks     = ["0.0.0.0/0"]
     security_groups = [aws_security_group.lb.id, aws_security_group.nat.id]
   }
 
@@ -99,6 +98,32 @@ resource "aws_security_group" "api" {
 
   tags = {
     Name        = "api-${var.product}-${var.environment}"
+    Project     = var.product
+    Owner       = "Terraform"
+    Environment = var.environment
+  }
+}
+
+resource "aws_security_group" "bastion" {
+  name   = "bastion-${var.product}-${var.environment}"
+  vpc_id = data.aws_vpc.main.id
+
+  ingress {
+    protocol    = "tcp"
+    from_port   = 22
+    to_port     = 22
+    cidr_blocks = var.work_allowed_ips
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name        = "bastion-${var.product}-${var.environment}"
     Project     = var.product
     Owner       = "Terraform"
     Environment = var.environment

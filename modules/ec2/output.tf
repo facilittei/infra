@@ -37,3 +37,11 @@ output "nat_public_dns" {
 output "nat_public_ip" {
   value = aws_instance.nat.public_ip
 }
+
+output "bastion_public_dns" {
+  value = aws_instance.bastion.public_dns
+}
+
+output "bastion_public_ip" {
+  value = aws_instance.bastion.public_ip
+}
