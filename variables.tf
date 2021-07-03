@@ -80,3 +80,8 @@ variable "work_allowed_ips" {
   type        = list(string)
   description = "Secure access for the remote workforce."
 }
+
+variable "cors_allowed_url" {
+  type        = list(string)
+  description = "Secure access for the assets."
+}

@@ -92,3 +92,8 @@ output "image_php_fpm_url" {
   description = "PHP FPM ECR container image registry URL."
   value       = aws_ecr_repository.php-fpm.repository_url
 }
+
+output "assets_url" {
+  description = "The bucket domain name URL."
+  value       = aws_s3_bucket.assets.bucket_domain_name
+}
