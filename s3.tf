@@ -13,4 +13,11 @@ resource "aws_s3_bucket" "assets" {
       "Access-Control-Allow-Credentials",
     ]
   }
+
+  tags = {
+    Name        = "assets-${var.product}-${var.environment}"
+    Project     = var.product
+    Owner       = "Terraform"
+    Environment = var.environment
+  }
 }

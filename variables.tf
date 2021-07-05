@@ -85,3 +85,13 @@ variable "cors_allowed_url" {
   type        = list(string)
   description = "Secure access for the assets."
 }
+
+variable "cache_instance_type" {
+  description = "The instance type of the Cache instance."
+  default     = "cache.t2.micro"
+}
+
+variable "bucket_logs" {
+  description = "The instance type of the Cache instance."
+  default     = "logs"
+}

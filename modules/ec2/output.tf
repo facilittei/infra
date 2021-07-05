@@ -45,3 +45,15 @@ output "bastion_public_dns" {
 output "bastion_public_ip" {
   value = aws_instance.bastion.public_ip
 }
+
+output "logs_url" {
+  value = aws_s3_bucket.logs.bucket_domain_name
+}
+
+output "cdn_domain_name" {
+  value = aws_cloudfront_distribution.main.domain_name
+}
+
+output "cdn_etag" {
+  value = aws_cloudfront_distribution.main.etag
+}

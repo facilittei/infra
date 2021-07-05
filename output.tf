@@ -94,6 +94,36 @@ output "image_php_fpm_url" {
 }
 
 output "assets_url" {
-  description = "The bucket domain name URL."
+  description = "The assets bucket domain name URL."
   value       = aws_s3_bucket.assets.bucket_domain_name
+}
+
+output "queue_dlq_url" {
+  description = "The URL for the created Amazon SQS queue DLQ."
+  value       = aws_sqs_queue.dlq.id
+}
+
+output "queue_main_url" {
+  description = "The URL for the created Amazon SQS queue."
+  value       = aws_sqs_queue.main.id
+}
+
+output "cache_nodes" {
+  description = "List of node objects including id, address, port and availability_zone."
+  value       = aws_elasticache_cluster.main.cache_nodes
+}
+
+output "logs_url" {
+  description = "The logs bucket domain name URL."
+  value       = module.ec2.logs_url
+}
+
+output "cdn_domain_name" {
+  description = "The domain name corresponding to the distribution."
+  value       = module.ec2.cdn_domain_name
+}
+
+output "cdn_etag" {
+  description = "The current version of the distribution's information."
+  value       = module.ec2.cdn_etag
 }
