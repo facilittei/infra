@@ -10,6 +10,14 @@ data "aws_subnet_ids" "private" {
   }
 }
 
+data "aws_security_group" "lb" {
+  id = module.ec2.sg_lb
+}
+
+data "aws_security_group" "api" {
+  id = module.ec2.sg_api
+}
+
 resource "aws_elasticache_subnet_group" "main" {
   name       = "main-${var.product}-${var.environment}"
   subnet_ids = data.aws_subnet_ids.private.ids
@@ -31,6 +39,7 @@ resource "aws_elasticache_cluster" "main" {
   engine_version       = "3.2.10"
   port                 = 6379
   subnet_group_name    = aws_elasticache_subnet_group.main.name
+  security_group_ids   = [data.aws_security_group.lb.id, data.aws_security_group.api.id]
 
   tags = {
     Name        = "main-${var.product}-${var.environment}"
