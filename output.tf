@@ -98,6 +98,11 @@ output "assets_url" {
   value       = aws_s3_bucket.assets.bucket_domain_name
 }
 
+output "videos_url" {
+  description = "The videos bucket domain name URL."
+  value       = aws_s3_bucket.videos.bucket_domain_name
+}
+
 output "queue_dlq_url" {
   description = "The URL for the created Amazon SQS queue DLQ."
   value       = aws_sqs_queue.dlq.id
