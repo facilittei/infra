@@ -1,6 +1,8 @@
-environment            = "dev"
-certificate_domain_api = "api.facilittei.com"
-db_name                = "facilittei"
+environment               = "dev"
+certificate_domain_api    = "api.facilittei.com"
+certificate_domain_assets = "assets.facilittei.com"
+certificate_domain_videos = "videos.facilittei.com"
+db_name                   = "facilittei"
 cors_allowed_url = [
   "https://api.facilittei.com",
   "https://app.facilittei.com",

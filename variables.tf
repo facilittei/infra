@@ -49,6 +49,16 @@ variable "certificate_domain_api" {
   description = "The domain of the certificate of the API."
 }
 
+variable "certificate_domain_assets" {
+  type        = string
+  description = "The domain of the certificate of the assets."
+}
+
+variable "certificate_domain_videos" {
+  type        = string
+  description = "The domain of the certificate of the videos."
+}
+
 variable "db_username" {
   type        = string
   description = "The database username."

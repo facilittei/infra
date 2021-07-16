@@ -132,3 +132,23 @@ output "cdn_etag" {
   description = "The current version of the distribution's information."
   value       = module.ec2.cdn_etag
 }
+
+output "cdn_assets_domain_name" {
+  description = "The assets domain name corresponding to the distribution."
+  value       = aws_cloudfront_distribution.assets.domain_name
+}
+
+output "cdn_assets_etag" {
+  description = "The current assets version of the distribution's information."
+  value       = aws_cloudfront_distribution.assets.etag
+}
+
+output "cdn_videos_domain_name" {
+  description = "The videos domain name corresponding to the distribution."
+  value       = aws_cloudfront_distribution.videos.domain_name
+}
+
+output "cdn_videos_etag" {
+  description = "The current videos version of the distribution's information."
+  value       = aws_cloudfront_distribution.videos.etag
+}
