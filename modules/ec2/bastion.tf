@@ -1,5 +1,5 @@
 resource "aws_instance" "bastion" {
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = "ami-0dd76f917833aac4b" // data.aws_ami.ubuntu.id
   availability_zone           = var.azs[0]
   instance_type               = var.instance_type
   vpc_security_group_ids      = ["${aws_security_group.bastion.id}"]

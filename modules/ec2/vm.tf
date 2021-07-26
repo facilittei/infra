@@ -5,7 +5,7 @@ resource "aws_key_pair" "api" {
 
 resource "aws_instance" "api" {
   count                       = length(var.azs)
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = "ami-0dd76f917833aac4b" //data.aws_ami.ubuntu.id
   availability_zone           = element(var.azs, count.index)
   instance_type               = var.instance_type
   vpc_security_group_ids      = ["${aws_security_group.api.id}", "${aws_security_group.lb.id}"]

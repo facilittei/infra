@@ -86,11 +86,6 @@ variable "nat_instance" {
   default     = "ami-00a9d4a05375b2763"
 }
 
-variable "work_allowed_ips" {
-  type        = list(string)
-  description = "Secure access for the remote workforce."
-}
-
 variable "cors_allowed_url" {
   type        = list(string)
   description = "Secure access for the assets."

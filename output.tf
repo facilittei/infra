@@ -152,3 +152,8 @@ output "cdn_videos_etag" {
   description = "The current videos version of the distribution's information."
   value       = aws_cloudfront_distribution.videos.etag
 }
+
+output "lambda_checkout_bucket" {
+  description = "The lambda checkout bucket."
+  value       = module.lambda-checkout.lambda_url
+}
