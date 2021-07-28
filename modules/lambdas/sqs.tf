@@ -10,7 +10,8 @@ resource "aws_sqs_queue" "dlq" {
 }
 
 resource "aws_sqs_queue" "main" {
-  name = "main-${var.lambda_name}-${var.product}-${var.environment}"
+  name                      = "main-${var.lambda_name}-${var.product}-${var.environment}"
+  receive_wait_time_seconds = 10
 
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.dlq.arn
