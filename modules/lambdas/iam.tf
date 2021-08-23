@@ -34,6 +34,18 @@ resource "aws_iam_policy" "logs" {
   }
 }
 
+resource "aws_iam_policy" "vpc" {
+  name   = "vpc-${var.lambda_name}-${var.product}-${var.environment}"
+  policy = file("${path.module}/policies/vpc.json")
+
+  tags = {
+    Name        = "vpc-${var.lambda_name}-${var.product}-${var.environment}"
+    Project     = var.product
+    Owner       = "Terraform"
+    Environment = var.environment
+  }
+}
+
 resource "aws_iam_role_policy_attachment" "lambda-sqs" {
   role       = aws_iam_role.lambda.name
   policy_arn = aws_iam_policy.sqs.arn
@@ -42,4 +54,9 @@ resource "aws_iam_role_policy_attachment" "lambda-sqs" {
 resource "aws_iam_role_policy_attachment" "lambda-logs" {
   role       = aws_iam_role.lambda.name
   policy_arn = aws_iam_policy.logs.arn
+}
+
+resource "aws_iam_role_policy_attachment" "lambda-vpc" {
+  role       = aws_iam_role.lambda.name
+  policy_arn = aws_iam_policy.vpc.arn
 }

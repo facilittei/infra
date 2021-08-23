@@ -6,10 +6,22 @@ resource "aws_lambda_function" "lambda" {
   runtime       = "go1.x"
   role          = aws_iam_role.lambda.arn
 
+  vpc_config {
+    subnet_ids         = data.aws_subnet_ids.private.ids
+    security_group_ids = data.aws_security_groups.private.ids
+  }
+
   environment {
     variables = {
-      name = "${var.lambda_name}-${var.product}-${var.environment}"
+      NAME         = "${var.lambda_name}-${var.product}-${var.environment}"
+      DRONE_COMMIT = ""
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      environment.0.variables["DRONE_COMMIT"],
+    ]
   }
 }
 
