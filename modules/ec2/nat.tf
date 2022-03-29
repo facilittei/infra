@@ -6,7 +6,7 @@ resource "aws_key_pair" "nat" {
 resource "aws_instance" "nat" {
   ami                         = var.nat_instance
   availability_zone           = var.azs[0]
-  instance_type               = var.instance_type
+  instance_type               = "t2.micro"
   vpc_security_group_ids      = ["${aws_security_group.nat.id}"]
   subnet_id                   = sort(data.aws_subnet_ids.public.ids)[0]
   associate_public_ip_address = true

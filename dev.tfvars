@@ -1,4 +1,5 @@
 environment               = "dev"
+instance_type             = "t3.small"
 certificate_domain_api    = "api.facilittei.com"
 certificate_domain_assets = "assets.facilittei.com"
 certificate_domain_videos = "videos.facilittei.com"
