@@ -8,7 +8,12 @@ export AWS_SECRET_ACCESS_KEY=
 export TF_VAR_public_key=
 export TF_VAR_db_username=
 export TF_VAR_db_password=
-export TF_VAR_work_allowed_ips=
+export TF_VAR_work_allowed_ips='["0.0.0.0/32"]'
+```
+
+```
+terraform version
+// Terraform v0.15.4
 ```
 
 ```

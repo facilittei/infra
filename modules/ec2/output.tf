@@ -57,3 +57,11 @@ output "cdn_domain_name" {
 output "cdn_etag" {
   value = aws_cloudfront_distribution.main.etag
 }
+
+output "observability_public_dns" {
+  value = aws_instance.observability.public_dns
+}
+
+output "observability_public_ip" {
+  value = aws_instance.observability.public_ip
+}

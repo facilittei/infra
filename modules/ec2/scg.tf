@@ -136,3 +136,53 @@ resource "aws_security_group" "bastion" {
     Environment = var.environment
   }
 }
+
+resource "aws_security_group" "observability" {
+  name   = "observability-${var.product}-${var.environment}"
+  vpc_id = data.aws_vpc.main.id
+
+  ingress {
+    protocol    = "tcp"
+    from_port   = 22
+    to_port     = 22
+    cidr_blocks = var.work_allowed_ips
+  }
+
+  ingress {
+    protocol        = "tcp"
+    from_port       = 80
+    to_port         = 80
+    security_groups = [aws_security_group.nat.id]
+    cidr_blocks     = var.work_allowed_ips
+  }
+
+  ingress {
+    protocol        = "tcp"
+    from_port       = 9090
+    to_port         = 9090
+    security_groups = [aws_security_group.nat.id]
+    cidr_blocks     = var.work_allowed_ips
+  }
+
+  ingress {
+    protocol        = "tcp"
+    from_port       = 3000
+    to_port         = 3000
+    security_groups = [aws_security_group.nat.id]
+    cidr_blocks     = var.work_allowed_ips
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name        = "observability-${var.product}-${var.environment}"
+    Project     = var.product
+    Owner       = "Terraform"
+    Environment = var.environment
+  }
+}

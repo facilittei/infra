@@ -100,3 +100,8 @@ variable "bucket_logs" {
   description = "The instance type of the Cache instance."
   default     = "logs"
 }
+
+variable "work_allowed_ips" {
+  type        = list(string)
+  description = "Secure access for the remote workforce."
+}

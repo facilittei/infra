@@ -37,6 +37,7 @@ module "ec2" {
   certificate_domain_api = var.certificate_domain_api
   nat_instance           = var.nat_instance
   bucket_logs            = var.bucket_logs
+  work_allowed_ips       = var.work_allowed_ips
 
   depends_on = [
     module.vpc,

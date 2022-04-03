@@ -6,3 +6,4 @@ variable "public_key" {}
 variable "certificate_domain_api" {}
 variable "nat_instance" {}
 variable "bucket_logs" {}
+variable "work_allowed_ips" {}

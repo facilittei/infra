@@ -157,3 +157,13 @@ output "lambda_checkout_bucket" {
   description = "The lambda checkout bucket."
   value       = module.lambda-checkout.lambda_url
 }
+
+output "observability_public_dns" {
+  description = "The observability instance public DNS."
+  value       = module.ec2.observability_public_dns
+}
+
+output "observability_public_ip" {
+  description = "The observability instance IP."
+  value       = module.ec2.observability_public_ip
+}
