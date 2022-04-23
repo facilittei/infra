@@ -90,6 +90,13 @@ resource "aws_security_group" "api" {
   }
 
   ingress {
+    protocol        = "tcp"
+    from_port       = 9100
+    to_port         = 9100
+    security_groups = [aws_security_group.observability.id]
+  }
+
+  ingress {
     from_port = 0
     to_port   = 0
     protocol  = "-1"
