@@ -173,6 +173,14 @@ resource "aws_security_group" "observability" {
 
   ingress {
     protocol        = "tcp"
+    from_port       = 9093
+    to_port         = 9093
+    security_groups = [aws_security_group.nat.id]
+    cidr_blocks     = var.work_allowed_ips
+  }
+
+  ingress {
+    protocol        = "tcp"
     from_port       = 3000
     to_port         = 3000
     security_groups = [aws_security_group.nat.id]
